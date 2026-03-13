@@ -1,5 +1,6 @@
-from pydantic import BaseModel
-from typing import Optional
+from pydantic import BaseModel, EmailStr
+from typing import Optional, List
+from datetime import datetime
 
 
 class ProductCreate(BaseModel):
@@ -26,12 +27,12 @@ class ProductResponse(BaseModel):
 
 
 class UserCreate(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 class UserResponse(BaseModel):
     id: int
-    email: str
+    email: EmailStr
 
     class Config:
         from_attributes = True
@@ -42,3 +43,31 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[int] = None
+
+class OrderItemCreate(BaseModel):
+    product_id: int
+    quantity: int = 1
+
+
+class OrderCreate(BaseModel):
+    items: List[OrderItemCreate]
+
+
+class OrderItemResponse(BaseModel):
+    id: int
+    product_id: int
+    quantity: int
+    product: ProductResponse
+
+    class Config:
+        from_attributes = True
+
+
+class OrderResponse(BaseModel):
+    id: int
+    status: str
+    created_at: datetime
+    items: List[OrderItemResponse]
+
+    class Config:
+        from_attributes = True
