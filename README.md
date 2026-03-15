@@ -1,31 +1,38 @@
 # FastAPI E-Commerce API
 
-## Live API
-https://vivacious-flow-production.up.railway.app/docs
+A full-featured e-commerce REST API built with FastAPI and Python, deployed on Railway with PostgreSQL.
 
-A full-featured e-commerce REST API built with FastAPI and Python.
+## Live API
+🚀 https://vivacious-flow-production.up.railway.app/docs
 
 ## Features
 - JWT Authentication (register/login)
-- Products CRUD
+- Products CRUD with search
 - Orders system
-- SQLite database
+- PostgreSQL database
 - Input validation with Pydantic
+- Automated tests with pytest
 
 ## Tech Stack
 - FastAPI
 - SQLAlchemy
-- SQLite
+- PostgreSQL
 - Pydantic
 - JWT (python-jose)
+- pytest
 
 ## Installation
-```bash
+
 git clone https://github.com/Naqashajmal/fastapi-ecommerce-api.git
 cd fastapi-ecommerce-api
 pip install -r requirements.txt
+
+Create .env file:
+SECRET_KEY=your-secret-key
+DATABASE_URL=sqlite:///./ecommerce.db
+
+Run:
 fastapi dev main.py
-```
 
 ## API Endpoints
 
@@ -35,12 +42,15 @@ fastapi dev main.py
 
 ### Products
 - GET /products
-- POST /products
+- POST /products (auth required)
 - GET /products/{id}
-- PUT /products/{id}
-- DELETE /products/{id}
+- PUT /products/{id} (auth required)
+- DELETE /products/{id} (auth required)
 
 ### Orders
-- POST /orders
-- GET /orders
-- GET /orders/{id}
+- POST /orders (auth required)
+- GET /orders (auth required)
+- GET /orders/{id} (auth required)
+
+## Testing
+pytest tests/ -v
