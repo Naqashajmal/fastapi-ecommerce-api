@@ -1,5 +1,8 @@
 # FastAPI E-Commerce API
 
+## Live API
+https://vivacious-flow-production.up.railway.app/docs
+
 A full-featured e-commerce REST API built with FastAPI and Python.
 
 ## Features
